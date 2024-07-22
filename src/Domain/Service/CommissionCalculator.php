@@ -4,6 +4,7 @@ namespace Project\Daniel\Domain\Service;
 
 use Money\Money;
 use Money\Currency;
+use Project\Daniel\Domain\ValueObject\EuCountry;
 
 readonly class CommissionCalculator implements CommissionCalculatorInterface
 {
@@ -37,12 +38,6 @@ readonly class CommissionCalculator implements CommissionCalculatorInterface
 
     private function isEu(string $countryCode): bool
     {
-        $euCountries = [
-            'AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR',
-            'HR', 'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PO', 'PT', 'RO',
-            'SE', 'SI', 'SK'
-        ];
-
-        return in_array($countryCode, $euCountries);
+        return EuCountry::tryFrom($countryCode) !== null;
     }
 }
