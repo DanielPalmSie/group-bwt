@@ -24,7 +24,7 @@ readonly class CommissionCalculator implements CommissionCalculatorInterface
             $rate = $this->exchangeRateService->getRate($money->getCurrency()->getCode());
 
             if ($rate == 0) {
-                throw new \DivisionByZeroError("Exchange rate for " . $money->getCurrency()->getCode() . " cannot be zero.");
+                throw new \Exception("Exchange rate for " . $money->getCurrency()->getCode() . " cannot be zero.");
             }
 
             $convertedAmount = (int) ($money->getAmount() / $rate);
