@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/myapp
+    stdin_open: true
+    tty: true
+    container_name: myapp_php
